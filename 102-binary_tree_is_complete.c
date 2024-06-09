@@ -17,7 +17,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		return (0);
 
 	queue = malloc(sizeof(binary_tree_t *) * 1024);
-	
+
 	if (queue == NULL)
 		return (0);
 

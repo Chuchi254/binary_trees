@@ -2,7 +2,7 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_is_complete - Checksif abinary tree is complete
+ * binary_tree_is_complete - Checks if abinary tree is complete
  *
  * @tree: Pointer to the root node of the tree to check
  *
@@ -10,11 +10,11 @@
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	if (tree == NULL)
-		return (0);
-
 	binary_tree_t **queue;
 	int front = 0, rear = 0, found_null = 0;
+
+	if (tree == NULL)
+		return (0);
 
 	queue = malloc(sizeof(binary_tree_t *) * 1024);
 	

@@ -45,11 +45,10 @@ int binary_tree_is_bst(const binary_tree_t *tree)
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	if (tree == NULL)
-		return (0);
-
 	size_t left_height, right_height;
 
+	if (tree == NULL)
+		return (0);
 	left_height = binary_tree_height(tree->left);
 	right_height = binary_tree_height(tree->right);
 
@@ -66,13 +65,13 @@ size_t binary_tree_height(const binary_tree_t *tree)
  */
 int binary_tree_is_avl_helper(const binary_tree_t *tree, int *height)
 {
+	int left_height = 0, right_height = 0;
+
 	if (tree == NULL)
 	{
 		*height = 0;
 		return (1);
 	}
-	int left_height = 0, right_height = 0;
-
 	if (!binary_tree_is_avl_helper(tree->left, &left_height) ||
 			!binary_tree_is_avl_helper(tree->right, &right_height))
 	return (0);

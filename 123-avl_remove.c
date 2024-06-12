@@ -25,6 +25,9 @@ avl_t *balance_avl_tree_after_removal(avl_t **tree)
 	}
 
 	if (balance < -1 && binary_tree_balance((*tree)->right) <= 0)
+		return ((avl_t *)binary_tree_rotate_left((binary_tree_t *)*tree));
+
+	if (balance < -1 && binary_tree_balance((*tree)->right) > 0)
 	{
 		(*tree)->right = (avl_t *)binary_tree_rotate_right(
 				(binary_tree_t *)(*tree)->right);
@@ -75,7 +78,6 @@ avl_t *avl_remove_helper(avl_t *root, int value)
 		if ((root->left == NULL) || (root->right == NULL))
 		{
 			temp = root->left ? root->left : root->right;
-
 			if (temp == NULL)
 			{
 				temp = root;
@@ -90,7 +92,6 @@ avl_t *avl_remove_helper(avl_t *root, int value)
 		else
 		{
 			temp = find_min_node(root->right);
-
 			root->n = temp->n;
 			root->right = avl_remove_helper(root->right, temp->n);
 		}

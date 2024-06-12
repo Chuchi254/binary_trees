@@ -45,7 +45,7 @@ avl_t *balance_avl_tree_after_removal(avl_t **tree)
  */
 avl_t *find_min_node(avl_t *node)
 {
-	avl_t *current node;
+	avl_t *current = node;
 
 	while (current && current->left != NULL)
 		current = current->left;

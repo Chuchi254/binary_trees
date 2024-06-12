@@ -45,9 +45,8 @@ avl_t *balance_avl_tree_after_removal(avl_t **tree)
  */
 avl_t *find_min_node(avl_t *node)
 {
-	avl_t *current;
+	avl_t *current node;
 
-	current = node;
 	while (current && current->left != NULL)
 		current = current->left;
 
@@ -75,7 +74,7 @@ avl_t *avl_remove_helper(avl_t *root, int value)
 		root->right = avl_remove_helper(root->right, value);
 	else
 	{
-		if ((root->left == NULL) || (root->right == NULL))
+		if (root->left == NULL || root->right == NULL)
 		{
 			temp = root->left ? root->left : root->right;
 			if (temp == NULL)

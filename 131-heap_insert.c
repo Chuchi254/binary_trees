@@ -1,5 +1,6 @@
 #include "binary_trees.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * binary_tree_size - Measures the size of a binary tree
@@ -40,20 +41,6 @@ heap_t *find_parent_for_insert(heap_t *root)
 }
 
 /**
- * swap_values - Swaps the values of two nodes
- *
- * @a: Pointer to the first node
- * @b: Pointer to the second node
- */
-void swap_values(heap_t *a, heap_t *b)
-{
-	int temp = a->n;
-
-	a->n = b->n;
-	b->n = temp;
-}
-
-/**
  * bubble_up - Restores the heap property by bubbling up
  *
  * @node: Pointer to the newly inserted node
@@ -62,9 +49,13 @@ void swap_values(heap_t *a, heap_t *b)
  */
 heap_t *bubble_up(heap_t *node)
 {
+	int temp;
+
 	while (node->parent && node->n > node->parent->n)
 	{
-		swap_values(node, node->parent);
+		temp = node->n;
+		node->n = node->parent->n;
+		node->parent->n = temp;
 		node = node->parent;
 	}
 	return (node);
@@ -97,4 +88,27 @@ heap_t *heap_insert(heap_t **root, int value)
 	new_node = (parent->left &&
 			parent->left->n == value) ? parent->left : parent->right;
 	return (bubble_up(new_node));
+}
+
+/**
+ * array_to_heap - Builds a Max Binary heap tree from an array
+ *
+ * @array: Pointer to the first element of the array to be converted
+ * @size: Number of elements in the array
+ *
+ * Return: Pointer to the root node of the created Binary heap
+ */
+heap_t *array_to_heap(int *array, size_t size)
+{
+	heap_t *root = NULL;
+	size_t i;
+
+	if (array == NULL || size == 0)
+		return (NULL);
+	for (i = 0; i < size; i++)
+	{
+		if (heap_insert(&root, array[i]) == NULL)
+			return (NULL);
+	}
+	return (root);
 }

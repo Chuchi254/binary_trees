@@ -80,7 +80,7 @@ heap_t *bubble_up(heap_t *node)
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new_node;
+	heap_t *new_node, *parent;
 
 	if (root == NULL)
 		return (NULL);
@@ -89,8 +89,6 @@ heap_t *heap_insert(heap_t **root, int value)
 		*root = (heap_t *)binary_tree_node(NULL, value);
 		return (*root);
 	}
-	heap_t *parent;
-
 	parent = find_parent_for_insert(*root);
 	if (parent->left == NULL)
 		parent->left = (heap_t *)binary_tree_node(parent, value);

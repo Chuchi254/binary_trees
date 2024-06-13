@@ -32,7 +32,7 @@ heap_t *find_parent_for_insert(heap_t *root)
 
 	while (path > 1)
 	{
-		next = (path & 1) ? parent->left : parent->right;
+		next = (path & 1) ? parent->right : parent->left;
 		if (path > 3)
 			parent = next;
 		path >>= 1;
